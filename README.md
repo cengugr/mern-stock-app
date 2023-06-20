@@ -7,7 +7,7 @@
 
 ---
 
-## Proje mimarisi:
+## Proje mimarisi: MERN Mongo Express React Node
 
 ### Demo Adımları
 
