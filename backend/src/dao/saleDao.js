@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import saleSchema from '../models/sale';
 
+
 saleSchema.statics = {
    
     create : function(data) {
