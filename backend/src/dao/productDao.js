@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 import productSchema from '../models/product';
+import stockDao from '../dao/stockDao';
+import stockSchema from '../models/stock';
 
 productSchema.statics = {
    
     create : function(data) {
-        var product = new this(data);
-       return product.save(); 
+       var product = new this(data);
+       return product.save();
     },
 
     update : function(query, data) {

@@ -1,4 +1,5 @@
 import dao from '../dao/saleDao';
+import mailsender from '../helper/mailSender';
 
 exports.getAll = function (req, res) {
     dao.getAll({})
@@ -15,6 +16,7 @@ exports.get = function (req, res) {
 }
 
 exports.create = function (req, res) {   
+    mailsender.sendMail();
     dao.create(req.body)
         .then(sale => res.json(sale))
         .catch((err) => 

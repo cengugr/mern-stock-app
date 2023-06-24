@@ -17,7 +17,7 @@ stockSchema.statics = {
     },
 
     getAll: function(query) {
-        return this.find(query);
+        return this.find(query).populate( 'company').populate('product').sort({_id: -1});
     },
 
     delete: function(query) {

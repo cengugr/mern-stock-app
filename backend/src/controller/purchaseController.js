@@ -1,4 +1,5 @@
 import dao from '../dao/purchaseDao';
+import queryCreator from '../helper/queryCreator';
 
 exports.getAll = function (req, res) {
     dao.getAll({})
@@ -15,6 +16,7 @@ exports.get = function (req, res) {
 }
 
 exports.create = function (req, res) {   
+  
     dao.create(req.body)
         .then(purchase => res.json(purchase))
         .catch((err) => 
@@ -35,6 +37,31 @@ exports.delete = function (req, res) {
            res.status(500).json({error: err}));
 }
 
+exports.getCompaniesWithFilterandPaginationandSorter = function (req, res) {
+
+    let body = req.body;
+    let page = req.params.page;
+    let limit = req.params.limit;
+    let sort = {};
+    if(body.sort && body.sort.sortOrder && body.sort.sortField){
+        sort[body.sort.sortField] = body.sort.sortOrder;
+    }
+    else 
+    sort = {_id: -1};
+
+    let query = queryCreator.convertToQuery({...body.filter});
+        console.log(body.filter);
+        console.log(query);
+        console.log(sort);  
+        if(body.filter.company)
+        query.company = body.filter.company; 
+    
+        
+    dao.getCompaniesWithFilterandPaginationandSorter(query, page, limit, sort )
+        .then(companies => res.json(companies))
+        .catch((err) => 
+           res.status(500).json({error: err}));
+}
 
 
 

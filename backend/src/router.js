@@ -11,6 +11,8 @@ module.exports = (router) => {
     router.post('/company', companyController.create);
     router.put('/company/:id', companyController.update);
     router.delete('/company/:id', companyController.delete); 
+    router.post('/company/:page/:limit', companyController.getCompaniesWithFilterandPaginationandSorter);
+
 
     router.get('/product/:id', productController.get);
     router.get('/product', productController.getAll);
@@ -22,11 +24,15 @@ module.exports = (router) => {
     router.get('/purchase', purchaseController.getAll);
     router.post('/purchase', purchaseController.create);
     router.put('/purchase/:id', purchaseController.update);
+    router.delete('/purchase/:id', purchaseController.delete);
+    router.post('/purchase/:page/:limit', purchaseController.getCompaniesWithFilterandPaginationandSorter);
+
 
     router.get('/sale/:id', saleController.get);
     router.get('/sale', saleController.getAll);
     router.post('/sale', saleController.create);
     router.put('/sale/:id', saleController.update);
+    router.delete('/sale/:id', saleController.delete); 
 
     router.get('/stock/:id', stockController.get);
     router.get('/stock', stockController.getAll);

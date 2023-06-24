@@ -25,6 +25,17 @@ companySchema.statics = {
 
     delete: function(query) {
        return this.findOneAndDelete(query); 
+    },
+
+    getCompaniesWithFilterandPaginationandSorter: async function(query,page,limit,sorter) {
+        
+        let skip = page * limit;
+        const count = await this.find(query).countDocuments(); 
+        const data = await this.find(query).skip(skip).limit(limit).sort(sorter);
+
+        return {count,data}; 
+
+
     }
 }
 
